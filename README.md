@@ -28,7 +28,10 @@ Copy-Item .env.example .env
 notepad .env
 ```
 
-`.env`에 사용자별로 서로 다른 `WAZUH_INDEXER_PASSWORD`, `WAZUH_KIBANA_PASSWORD`, `WAZUH_API_PASSWORD`, `GOOGLE_API_KEY`, `DOCKER_AGENT_TOKEN`을 설정하고 `DOCKER_AGENT_URL=http://docker-agent:8080`으로 지정합니다. Wazuh API 비밀번호는 대소문자·숫자·특수문자를 포함하는 강력한 값으로 설정하세요. Slack Socket Mode 사용 시 `SLACK_BOT_TOKEN`, `SLACK_APP_TOKEN`, `SLACK_CHANNEL_ID`, `SLACK_APPROVER_IDS`를 추가합니다. 키와 토큰을 GitHub에 커밋하지 마세요.
+- `.env`에 사용자별로 서로 다른 `WAZUH_INDEXER_PASSWORD`, `WAZUH_KIBANA_PASSWORD`, `WAZUH_API_PASSWORD`, `GOOGLE_API_KEY`, `DOCKER_AGENT_TOKEN`을 설정하고 `DOCKER_AGENT_URL=http://docker-agent:8080`으로 지정합니다.
+- Wazuh API 비밀번호는 대소문자·숫자·특수문자를 포함하는 강력한 값으로 설정하세요.
+- Slack Socket Mode 사용 시 `SLACK_BOT_TOKEN`, `SLACK_APP_TOKEN`, `SLACK_CHANNEL_ID`, `SLACK_APPROVER_IDS`를 추가합니다.
+- **키와 토큰을 GitHub에 절대 커밋 금지**
 
 ```powershell
 powershell -ExecutionPolicy Bypass -File .\scripts\setup-wazuh.ps1
@@ -38,7 +41,8 @@ docker compose --profile wazuh --profile ai --profile slack ps -a
 
 - SOC Demo: http://localhost:8088
 - Wazuh Dashboard: https://localhost:8443 (로컬 인증서 경고 가능)
-- Slack 설정을 하지 않았다면 `--profile slack`을 빼세요. AI 설정이 없다면 `--profile ai`를 빼되 L1/L2 분석은 불가합니다.
+- Slack 설정을 하지 않았다면 `--profile slack`을 빼세요.
+- AI 설정이 없다면 `--profile ai`를 빼되 L1/L2 분석은 불가합니다.
 - **설치 스크립트는 최초 설치용**입니다. 이미 실행 중인 다른 Wazuh 환경에 덮어쓰지 마세요.
 - 첫 실행에서 Manager API 또는 Filebeat 인증 실패 시 Wazuh 계정/해시 동기화 및 보안 초기화가 추가로 필요할 수 있습니다. 이 저장소는 초회 부팅을 모든 플랫폼에서 검증하지 않았습니다.
 
@@ -52,9 +56,12 @@ Invoke-RestMethod -Method Post http://localhost:8088/api/collector/queue/run
 powershell -ExecutionPolicy Bypass -File .\scripts\run-e2e-test.ps1
 ```
 
-E2E 스크립트는 **합성 Wazuh 형식 문서**를 별도 `wazuh-alerts-soc-e2e-*` 인덱스에 기록합니다. 실제 Manager 룰 탐지, Sysmon 이벤트 또는 실제 공격은 생성하지 않습니다. 테스트는 Gemini API 사용량을 소비할 수 있습니다. Slack 새 메시지는 별도로 확인해야 합니다.
-
-자동 수집은 기본적으로 `WAZUH_AUTO_IMPORT=false`입니다. 필요할 때만 `.env`에서 `true`로 변경하고 `soc-demo`를 재생성하세요. 수집 기본값은 120초, 배치 5건, AI 대기열 처리 최대 2건이며 고정 기간 기반 체크포인트는 누락 가능성이 있습니다.
+- E2E 스크립트는 **합성 Wazuh 형식 문서**를 별도 `wazuh-alerts-soc-e2e-*` 인덱스에 기록합니다.
+- 실제 Manager 룰 탐지, Sysmon 이벤트 또는 실제 공격은 생성하지 않습니다.
+- 테스트는 Gemini API 사용량을 소비할 수 있습니다. Slack 새 메시지는 별도로 확인해야 합니다.
+- 자동 수집은 기본적으로 `WAZUH_AUTO_IMPORT=false`입니다.
+- 필요할 때만 `.env`에서 `true`로 변경하고 `soc-demo`를 재생성하세요.
+- 수집 기본값은 120초, 배치 5건, AI 대기열 처리 최대 2건이며 고정 기간 기반 체크포인트는 누락 가능성이 있습니다.
 
 ## 아키텍처
 
