@@ -1,0 +1,19 @@
+# Credentials and private Wazuh certificates
+.env
+.env.*
+!.env.example
+wazuh/config/wazuh_indexer_ssl_certs/
+wazuh/config/wazuh_indexer/internal_users.yml
+*.pem
+*.key
+*.p12
+# Runtime and backups
+*.sqlite
+*.db
+__pycache__/
+.pytest_cache/
+backup-*/
+*.log
+.DS_Store
+.vscode/
+.idea/
