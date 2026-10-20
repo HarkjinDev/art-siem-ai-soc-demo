@@ -1,6 +1,7 @@
-# ART-SIEM-AI SOC Demo — Final v5.1.2.2
+# ART-SIEM-AI SOC Demo 
 
-Docker Compose 기반 Wazuh + Docker Agent (Gemini) + SOC Web + Slack ChatOps 데모입니다. **연구·학습·데모 용도**이며 SOC 운영시스템이 아닙니다.
+Docker Compose 기반 Wazuh + Docker Agent (Gemini) + SOC Web + Slack ChatOps 데모입니다. 
+**연구·학습·데모 용도**이며 SOC 운영시스템이 아닙니다.
 
 ## 기능과 검증 범위
 
@@ -9,7 +10,6 @@ Docker Compose 기반 Wazuh + Docker Agent (Gemini) + SOC Web + Slack ChatOps �
 - L1/L2 Docker Agent + Gemini 분석; Slack Socket Mode 게시
 - L3 Sigma 초안, pySigma 구문 검사, 제한적 단일 샘플 필드 비교, Slack 검토 승인
 - 합성 이벤트 표시: **실제 엔드포인트 실행 또는 Wazuh 룰 발동을 의미하지 않음**
-- **검증 기록:** 2026-10-20 사용자 환경에서 합성 E2E Indexer 쓰기/읽기, SOC 분석, Slack L1/L2 게시, Sigma `DRAFT_PYSIGMA_VALID` 및 `SAMPLE_MATCH`, `APPROVED_FOR_REVIEW` 확인. Slack에서 일부 Markdown 이스케이프가 보일 수 있습니다.
 
 ## 사전 요구 사항
 
