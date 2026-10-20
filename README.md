@@ -6,7 +6,6 @@ Docker Compose 기반 Wazuh + Docker Agent (Gemini) + SOC Web + Slack ChatOps �
 ## 기능과 검증 범위
 
 - Wazuh Manager/Indexer/Dashboard 4.14.5 단일 노드 (선택적 `wazuh` 프로파일)
-- Wazuh Alert 조회, SQLite 중복 제거, 체크포인트 및 AI 대기열 (데모 수준)
 - L1/L2 Docker Agent + Gemini 분석; Slack Socket Mode 게시
 - L3 Sigma 초안, pySigma 구문 검사, 제한적 단일 샘플 필드 비교, Slack 검토 승인
 - 합성 이벤트 표시: **실제 엔드포인트 실행 또는 Wazuh 룰 발동을 의미하지 않음**
